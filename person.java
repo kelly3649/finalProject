@@ -7,7 +7,7 @@ public class person{
 	Random r = new Random();
 	canHandle = r.nextInt(10) + 1;
 	money = (r.nextInt(10) + 1) * 10; 
-	ate = false;
+	ate = false;a
     }
     
     public person(boolean canHandle, int money, boolean ate){
