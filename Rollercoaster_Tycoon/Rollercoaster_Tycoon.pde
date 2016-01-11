@@ -41,6 +41,13 @@ void draw(){
   rect(500,700,250,100);
   rect(750,700,250,100);
   
+  if(mousePressed){
+    if(mouseX>0 && mouseX <250 && mouseY>600 && mouseY <700){
+      println("The mouse is pressed and over tzhe button");
+
+    }
+  } 
+  
   // Set stroke-color white
   stroke(255); 
   
@@ -55,6 +62,3 @@ void draw(){
   
 
 }
-
-
-
