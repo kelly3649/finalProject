@@ -6,51 +6,55 @@ int delay = 0;
 
 // Setup the Processing Canvas
 void setup(){
-  size( 1600, 900 );
-  strokeWeight( 10 );
+
+  size(1000,800);
+  strokeWeight( 5 );
   frameRate( 60 );
-  X = width / 2;
-  Y = height / 2;
+
+  
   nX = X;
   nY = Y;  
 }
 
 // Main draw loop
 void draw(){
+
   
   // Fill canvas picture
   background(1,142,14);
+  strokeWeight(1);
+  for(int i = 0; i<1000;i+=20){
+    line(i,0,i,600);
+  }
+  for(int i = 0; i<600; i+=20){
+    line(0,i,1000,i);
+  }
   
   // Set fill-color to blue
   fill( 0, 121, 184 );
+  rect(0,600,250,100);
+  rect(250,600,250,100);
+  rect(500,600,250,100);
+  rect(750,600,250,100);
+  rect(0,700,250,100);
+  rect(250,700,250,100);
+  rect(500,700,250,100);
+  rect(750,700,250,100);
   
   // Set stroke-color white
   stroke(255); 
   
   // Draw menu
-  rect(0, 800, 1600, 100);
-  line(200, 800, 200, 900);
-  line(400, 800, 400, 900);
-  line(600, 800, 600, 900);
-  line(800, 800, 800, 900);
-  line(1000, 800, 1000, 900);
-  line(1200, 800, 1200, 900);
-  line(1400, 800, 1400, 900);
-  line(1600, 800, 1600, 900);
+  
+
   
   fill(0);
-  textSize(30);
+  textSize(15);
   textAlign(CENTER);
-  text("Rollercoaster", 100,860 );
+  text("Rollercoaster",125,650);
+  
+
 }
 
 
-// Set circle's next destination
-void mouseMoved(){
-  nX = mouseX;
-  nY = mouseY;  
-}
 
-void mousePressed(){
-  radius++;
-}
