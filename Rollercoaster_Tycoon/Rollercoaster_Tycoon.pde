@@ -1,5 +1,6 @@
   // IGNORE THIS TAB FOR NOW
   import java.util.*;
+  import java.lang.Math;
   float radius = 50.0;
   int X, Y;
   int nX, nY;
@@ -28,14 +29,15 @@
  
     // Fill canvas picture
     background(1, 142, 14);
-    strokeWeight(1);
+    strokeWeight(2);
+    /*
     for (int i = 0; i<1000; i+=20) {
       line(i, 0, i, 600);
     }
     for (int i = 0; i<600; i+=20) {
       line(0, i, 1000, i);
     }
-  
+  */
     // Set fill-color to blue
     fill( 0, 121, 184 );
     rect(0, 600, 250, 100);
@@ -59,7 +61,7 @@
     textAlign(CENTER);
     text("Rollercoaster", 125, 650);
     for(int i = 0;i<rc.size();i++){
-      fill(0,0,255);
+      fill(255,0,0);
       rect(rc.get(i).getX(),rc.get(i).getY(),rc.get(i).getrwidth(),20);
     }
   
