@@ -19,7 +19,11 @@ class Person{
     this.money = money; //
     this.ate = ate;
   }
-  void move(){
+  void move(int direction){
+    //1 2 3 4 for parameter direction 
+    //1 = up, 2 = down, 3 = left, 4 = right
+    if(direction == 1){
+    }
   }
   
   boolean ride(Rollercoaster r){

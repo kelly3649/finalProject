@@ -5,7 +5,7 @@
   int X, Y;
   int nX, nY;
   int delay = 0;
-  boolean rcButtonPressed,sButtonPressed;
+  boolean rcButtonPressed,sButtonPressed,walkable;
   ArrayList<Rollercoaster> rc = new ArrayList<Rollercoaster>(); 
   ArrayList<Stand> s = new ArrayList<Stand>();
   // Setup the Processing Canvas
