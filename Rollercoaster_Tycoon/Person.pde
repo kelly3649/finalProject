@@ -1,21 +1,25 @@
 import java.util.*;
-class person{
+class Person{
   int canHandle;
   int money;
   boolean ate;
-  float x;
-  float y;
+  double xcor;
+  double ycor;
   
-  person(){
+  Person(){
     Random r = new Random();
+    xcor = 500;
+    ycor = 550;
     canHandle = r.nextInt(10) + 1;
     money = (r.nextInt(10) + 1) * 100;
     ate = false;
   }
-  person(int canHandle, int money, boolean ate){
+  Person(int canHandle, int money, boolean ate){
     this.canHandle = canHandle;
-    this.money = money;
+    this.money = money; //
     this.ate = ate;
+  }
+  void move(){
   }
   
   boolean ride(Rollercoaster r){

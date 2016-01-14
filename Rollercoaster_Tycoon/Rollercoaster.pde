@@ -4,17 +4,12 @@ class Rollercoaster{
   int rwidth;
   int xcor,ycor;
   
-  Rollercoaster(int xcor,int ycor,int rwidth, int intensity){
-    this.intensity = intensity;
-    this.xcor = xcor;
-    this.ycor = ycor;
-    this.rwidth = rwidth;
-    cost = intensity * 5;
-  }
+
   Rollercoaster(int xcor,int ycor,int rwidth){
     this.xcor = xcor;
     this.ycor = ycor;
     this.rwidth = rwidth;
+    intensity = rwidth/20;
     cost = intensity * 5;
   }
 
