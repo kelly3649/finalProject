@@ -3,8 +3,8 @@ class Person{
   int canHandle;
   int money;
   boolean ate;
-  double xcor;
-  double ycor;
+  float xcor;
+  float ycor;
   
   Person(){
     Random r = new Random();
@@ -19,11 +19,26 @@ class Person{
     this.money = money; //
     this.ate = ate;
   }
-  void move(int direction){
+  void move(){
     //1 2 3 4 for parameter direction 
     //1 = up, 2 = down, 3 = left, 4 = right
-    if(direction == 1){
-    }
+    //if(direction == 1){
+    //}
+    Random r = new Random();
+    float  a = (r.nextInt(3) - 1) / 10;
+    xcor += a;
+  }
+  float getX(){
+    return xcor;
+  }
+  float getY(){
+    return ycor;
+  }
+  void setX(float a){
+    xcor = xcor + a;
+  }
+  void setY(float a){
+    ycor = ycor + a;
   }
   
   boolean ride(Rollercoaster r){

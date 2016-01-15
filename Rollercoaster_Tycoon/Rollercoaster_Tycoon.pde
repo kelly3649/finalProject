@@ -3,30 +3,53 @@
   import java.lang.Math;
   float radius = 50.0;
   int X, Y;
-  int nX, nY;
-  int delay = 0;
-  boolean rcButtonPressed,sButtonPressed,walkable;
+  long lastTime = 0;
+  //mechanics
+  int numpeople;
+  int attractionlevel;
+  int money;
+
+
+  
+  //buttons
+  boolean rcButtonPressed,sButtonPressed,nameButtonPressed,walkable;
+  
+  //arraylists
   ArrayList<Rollercoaster> rc = new ArrayList<Rollercoaster>(); 
   ArrayList<Stand> s = new ArrayList<Stand>();
+  ArrayList<Person> p = new ArrayList<Person>();
   // Setup the Processing Canvas
   void setup() {
+    //tests
     Rollercoaster r1 = new Rollercoaster(0,0,20);
     rc.add(r1);
     Person p1 = new Person();
+    
+    //setup game
     size(1000, 800);
     strokeWeight( 5 );
     frameRate( 60 );
-  
-  
-    nX = X;
-    nY = Y;
+    
+    //setup delay
+   lastTime = millis();
+
   }
    
   // Main draw loop
   void draw() {
-
- 
-   
+    
+    attractionlevel = rc.size()*10;
+    if (numpeople < attractionlevel){
+      Random r = new Random();
+      if (millis() - lastTime > r.nextInt(15) * 1000){
+        Person p1 = new Person();
+        p.add(p1);
+        numpeople ++;
+      }
+    }
+    
+      
+      
  
     // Fill canvas picture
     background(1, 142, 14);
@@ -62,15 +85,22 @@
     textAlign(CENTER);
     text("Rollercoaster", 125, 650);
     text("Stand",375,650);
-    
+    fill(255,255,255);
+    rect(450,560,100,40);
     for(int i = 0;i<rc.size();i++){
-      fill(255,0,0);
-      rect(rc.get(i).getX(),rc.get(i).getY(),rc.get(i).getrwidth(),20);
+        fill(255,0,0);
+        rect(rc.get(i).getX(),rc.get(i).getY(),rc.get(i).getrwidth(),20);
+      }
+    for(int i = 0;i<s.size();i++){
+      fill(249,192,255);
+      rect(s.get(i).getX(),s.get(i).getY(),s.get(i).getswidth(),20);
+      }
+    for(int i = 0;i<p.size();i++){
+      fill(0,0,0);
+      ellipse(p.get(i).getX(),p.get(i).getY(),10.0,10.0);
+      p.get(i).move();
     }
-  for(int i = 0;i<s.size();i++){
-    fill(249,192,255);
-    rect(s.get(i).getX(),s.get(i).getY(),s.get(i).getswidth(),20);
-    }
+    
   }
   void mousePressed(){
     if (mouseX>0 && mouseX <250 && mouseY>600 && mouseY <700) {
@@ -80,6 +110,9 @@
     if (mouseX>250 && mouseX <500 && mouseY>600 && mouseY <700) {
         println("Release to place Stand");
         sButtonPressed = true;
+    }
+    if (mouseX>450 && mouseX<550 && mouseY>560 && mouseY<600){
+      nameButtonPressed = true;
     }
   }
   void mouseReleased(){
@@ -97,8 +130,12 @@
       
      // println("RELEASE WORKED");
     }
+    if(nameButtonPressed){
+      
+    }
     rcButtonPressed = false;
     sButtonPressed = false;
+    nameButtonPressed = false;
     }
    
 
