@@ -8,6 +8,7 @@
   int numpeople;
   int attractionlevel;
   int money;
+  Random r;
 
 
   
@@ -30,8 +31,10 @@
     strokeWeight( 5 );
     frameRate( 60 );
     
+    //setup random
+    r = new Random();
     //setup delay
-   lastTime = millis();
+    lastTime = millis();
 
   }
    
@@ -98,7 +101,23 @@
     for(int i = 0;i<p.size();i++){
       fill(0,0,0);
       ellipse(p.get(i).getX(),p.get(i).getY(),10.0,10.0);
-      p.get(i).move();
+      
+      Rollercoaster r1 = rc.get(r.nextInt(rc.size()));
+      
+      if (p.get(i).getMoney() < 10){
+         p.get(i).moveToEntrance();
+      }else{
+        p.get(i).chooseRollercoaster(r1);
+        p.get(i).move();
+      }
+      
+      if (p.get(i).getX() == 500 && p.get(i).getY() == 590){
+        p.remove(p.get(i));
+      }else{
+        println(p.get(i).getX() + " " + p.get(i).getY());
+      }
+      
+      
     }
     
   }
@@ -138,6 +157,7 @@
     nameButtonPressed = false;
     }
    
+
 
 
  

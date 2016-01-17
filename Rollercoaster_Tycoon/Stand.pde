@@ -12,10 +12,10 @@ class Stand{
   int getCost(){
     return cost;
   }
-  int getX(){
+  float getX(){
     return xcor;
   }
-  int getY(){
+  float getY(){
     return ycor;
   }
   int getswidth(){
