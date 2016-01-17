@@ -1,9 +1,8 @@
   // IGNORE THIS TAB FOR NOW
   import java.util.*;
   import java.lang.Math;
-  float radius = 50.0;
-  int X, Y;
   long lastTime = 0;
+  
   //mechanics
   int numpeople;
   int attractionlevel;
@@ -31,6 +30,8 @@
     strokeWeight( 5 );
     frameRate( 60 );
     
+    //setup game mechanics
+    money = 1000;
     //setup random
     r = new Random();
     //setup delay
@@ -43,7 +44,6 @@
     
     attractionlevel = rc.size()*10;
     if (numpeople < attractionlevel){
-      Random r = new Random();
       if (millis() - lastTime > r.nextInt(15) * 1000){
         Person p1 = new Person();
         p.add(p1);
@@ -74,7 +74,9 @@
     rect(0, 700, 250, 100);
     rect(250, 700, 250, 100);
     rect(500, 700, 250, 100);
+    //moneybox
     rect(750, 700, 250, 100);
+    
    
     // Set stroke-color white
     stroke(255); 
@@ -88,6 +90,7 @@
     textAlign(CENTER);
     text("Rollercoaster", 125, 650);
     text("Stand",375,650);
+    text("Money: " + money, 875, 750);
     fill(255,255,255);
     rect(450,560,100,40);
     for(int i = 0;i<rc.size();i++){
@@ -141,6 +144,7 @@
       rc.add(r);
       
       println("RELEASE WORKED");
+      money -= 1000;
     }
     if(sButtonPressed){
       
