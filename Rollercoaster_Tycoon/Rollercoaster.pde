@@ -2,11 +2,11 @@ class Rollercoaster{
   int intensity;
   int cost;
   int rwidth;
-  float xcor,ycor;
+  int xcor,ycor;
  
   
 
-  Rollercoaster(float xcor,float ycor,int rwidth){
+  Rollercoaster(int xcor,int ycor,int rwidth){
     this.xcor = xcor;
     this.ycor = ycor;
     this.rwidth = rwidth;
@@ -21,10 +21,10 @@ class Rollercoaster{
   int getCost(){
     return cost;
   }
-  float getX(){
+  int getX(){
     return xcor;
   }
-  float getY(){
+  int getY(){
     return ycor;
   }
   int getrwidth(){

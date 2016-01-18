@@ -3,8 +3,8 @@ class Person{
   int canHandle;
   int money;
   boolean ate;
-  float xcor;
-  float ycor;
+  int xcor;
+  int ycor;
   boolean choseRollercoaster;
   Rollercoaster r1;
   
@@ -22,6 +22,8 @@ class Person{
     this.money = money; //
     this.ate = ate;
     choseRollercoaster = false;
+    xcor = 500;
+    ycor = 550;
   }
   
   void chooseRollercoaster(Rollercoaster r){
@@ -31,78 +33,73 @@ class Person{
     }
   }
     
+  void moveToRollercoaster(){
+    //println("moving to rollercoaster");
+    int destX = r1.getX();
+    int destY = r1.getY();
     
-  
-  void move(){
-    Random r = new Random();
-    float destX = r1.getX();
-    float destY = r1.getY();
-    
-    if (xcor != destX || ycor != destY){
+    if (xcor != destX){
       if (xcor - destX > 0){
         xcor --;
       }else{
         xcor ++;
       }
+    }else if (ycor != destY){    
       if (ycor - destY > 0){
-        ycor --;
+        ycor --;   
       }else{
         ycor ++;
       }
     }
     
-    ride(r1);
-
-       
-  }
-  
-  float getX(){
-    return xcor;
-  }
-  float getY(){
-    return ycor;
-  }
-  int getMoney(){
-    return money;
-  }
-  void setX(float a){
-    xcor = xcor + a;
-  }
-  void setY(float a){
-    ycor = ycor + a;
-  }
-  
-  boolean ride(Rollercoaster r){
-    boolean samecoordinates = (r.getX() == xcor && r.getY() == ycor);
-    if (canHandle >= r.getIntensity() && money >= r.getCost() && samecoordinates){
-      money = money - r.getCost();
-      println("Person rode rollercoaster");
-      
-      //ride new rollercoaster
+    else{
+      ride(); //dont put in rollercoaster_tycoon
       choseRollercoaster = false;
-      return true;
     }
-    choseRollercoaster = false;
-    //movetoentrance
-    return false;
   }
+  
+  void ride(){
+    money -= r1.getCost();
+  }
+  
   void moveToEntrance(){
+   // println("moving to entrance");
+    choseRollercoaster = true;
+    Rollercoaster entrance = new Rollercoaster(500,590,0);
+    r1 = entrance;
       //500,590 is the entrance coordinates
-      if (xcor != 500 || ycor != 590){
+      if (xcor != 500){
         if (xcor - 500 > 0){
           xcor --;
         }else{
           xcor ++;
         }
+      }else if (ycor != 590){
         if (ycor - 590 > 0){
           ycor --;
         }else{
           ycor ++;
         }
       }
+      
     
   }
   
+    
   
-  
+  int getX(){
+    return xcor;
+  }
+  int getY(){
+    return ycor;
+  }
+  int getMoney(){
+    return money;
+  }
+  void setX(int a){
+    xcor = xcor + a;
+  }
+  void setY(int a){
+    ycor = ycor + a;
+  }  
 }

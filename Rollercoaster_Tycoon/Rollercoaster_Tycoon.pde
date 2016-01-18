@@ -21,9 +21,9 @@
   // Setup the Processing Canvas
   void setup() {
     //tests
-    Rollercoaster r1 = new Rollercoaster(0,0,20);
-    rc.add(r1);
-    Person p1 = new Person();
+    //Rollercoaster r1 = new Rollercoaster(450,450,20);
+    //rc.add(r1);
+    //Person p1 = new Person();
     
     //setup game
     size(1000, 800);
@@ -45,7 +45,7 @@
     attractionlevel = rc.size()*10;
     if (numpeople < attractionlevel){
       if (millis() - lastTime > r.nextInt(15) * 1000){
-        Person p1 = new Person();
+        Person p1 = new Person(10,101,false);
         p.add(p1);
         numpeople ++;
       }
@@ -107,17 +107,18 @@
       
       Rollercoaster r1 = rc.get(r.nextInt(rc.size()));
       
-      if (p.get(i).getMoney() < 10){
+      
+      if (p.get(i).getMoney() < r1.getCost()){
          p.get(i).moveToEntrance();
       }else{
-        p.get(i).chooseRollercoaster(r1);
-        p.get(i).move();
+         p.get(i).chooseRollercoaster(r1);
+         p.get(i).moveToRollercoaster();
       }
       
       if (p.get(i).getX() == 500 && p.get(i).getY() == 590){
         p.remove(p.get(i));
       }else{
-        println(p.get(i).getX() + " " + p.get(i).getY());
+        //println(p.get(i).getX() + " " + p.get(i).getY());
       }
       
       
@@ -139,8 +140,8 @@
   }
   void mouseReleased(){
     if(rcButtonPressed){
-      
-      Rollercoaster r = new Rollercoaster(mouseX, mouseY,20);
+      println("x and y cors: (" + round(mouseX) + "," + round(mouseY) + ")");
+      Rollercoaster r = new Rollercoaster(round(mouseX), round(mouseY),20);
       rc.add(r);
       
       println("RELEASE WORKED");
