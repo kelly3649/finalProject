@@ -18,6 +18,7 @@
   ArrayList<Rollercoaster> rc = new ArrayList<Rollercoaster>(); 
   ArrayList<Stand> s = new ArrayList<Stand>();
   ArrayList<Person> p = new ArrayList<Person>();
+  ArrayList<Barf> b = new ArrayList<Barf>();
   // Setup the Processing Canvas
   void setup() {
     //tests
@@ -70,6 +71,7 @@
     rect(0, 600, 250, 100);
     rect(250, 600, 250, 100);
     rect(500, 600, 250, 100);
+    //attractionlevel box
     rect(750, 600, 250, 100);
     rect(0, 700, 250, 100);
     rect(250, 700, 250, 100);
@@ -91,16 +93,24 @@
     text("Rollercoaster", 125, 650);
     text("Stand",375,650);
     text("Money: " + money, 875, 750);
+    text("Attraction Level: " + attractionlevel, 875, 650);
     fill(255,255,255);
     rect(450,560,100,40);
     for(int i = 0;i<rc.size();i++){
         fill(255,0,0);
         rect(rc.get(i).getX(),rc.get(i).getY(),rc.get(i).getrwidth(),20);
-      }
+    }
     for(int i = 0;i<s.size();i++){
       fill(249,192,255);
       rect(s.get(i).getX(),s.get(i).getY(),s.get(i).getswidth(),20);
-      }
+    }
+    for(int i = 0; i<b.size();i++){
+      fill(222,184,135);
+      println("barf drawn");
+      int barfx = b.get(i).getX();
+      int barfy = b.get(i).getY();
+      triangle(barfx,barfy,barfx + 10,barfy,barfx + 5,barfy + 10);
+    }
     for(int i = 0;i<p.size();i++){
       fill(0,0,0);
       ellipse(p.get(i).getX(),p.get(i).getY(),10.0,10.0);
@@ -114,6 +124,11 @@
          p.get(i).chooseRollercoaster(r1);
          if (p.get(i).moveToRollercoaster()){
            money += r1.getCost();
+           if (p.get(i).getEat()){
+             Barf b1 = new Barf(p.get(i).getX(),p.get(i).getY());
+             b.add(b1);
+             p.get(i).notEat();
+           }
          }
       }
       

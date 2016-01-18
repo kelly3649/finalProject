@@ -1,3 +1,4 @@
+//will be in final project, not demo
 class Stand{
   int xcor, ycor;
   int cost;

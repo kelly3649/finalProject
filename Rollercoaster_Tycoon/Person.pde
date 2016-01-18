@@ -14,7 +14,11 @@ class Person{
     ycor = 550;
     canHandle = r.nextInt(10) + 1;
     money = (r.nextInt(10) + 1) * 5;
-    ate = false;
+    if (r.nextInt(2) == 0){
+      ate = false;
+    }else{
+      ate = true;
+    }
     choseRollercoaster = false;
   }
   Person(int canHandle, int money, boolean ate){
@@ -97,6 +101,12 @@ class Person{
   }
   int getMoney(){
     return money;
+  }
+  boolean getEat(){
+    return ate;
+  }
+  void notEat(){
+    ate = false;
   }
   void setX(int a){
     xcor = xcor + a;
