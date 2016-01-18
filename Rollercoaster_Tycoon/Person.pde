@@ -13,7 +13,7 @@ class Person{
     xcor = 500;
     ycor = 550;
     canHandle = r.nextInt(10) + 1;
-    money = (r.nextInt(10) + 1) * 100;
+    money = (r.nextInt(10) + 1) * 5;
     ate = false;
     choseRollercoaster = false;
   }
@@ -33,7 +33,7 @@ class Person{
     }
   }
     
-  void moveToRollercoaster(){
+  boolean moveToRollercoaster(){
     //println("moving to rollercoaster");
     int destX = r1.getX();
     int destY = r1.getY();
@@ -55,7 +55,9 @@ class Person{
     else{
       ride(); //dont put in rollercoaster_tycoon
       choseRollercoaster = false;
+      return true;
     }
+    return false;
   }
   
   void ride(){

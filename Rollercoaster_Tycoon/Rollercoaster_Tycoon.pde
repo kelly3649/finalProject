@@ -45,7 +45,7 @@
     attractionlevel = rc.size()*10;
     if (numpeople < attractionlevel){
       if (millis() - lastTime > r.nextInt(15) * 1000){
-        Person p1 = new Person(10,101,false);
+        Person p1 = new Person();
         p.add(p1);
         numpeople ++;
       }
@@ -112,13 +112,14 @@
          p.get(i).moveToEntrance();
       }else{
          p.get(i).chooseRollercoaster(r1);
-         p.get(i).moveToRollercoaster();
+         if (p.get(i).moveToRollercoaster()){
+           money += r1.getCost();
+         }
       }
       
       if (p.get(i).getX() == 500 && p.get(i).getY() == 590){
         p.remove(p.get(i));
-      }else{
-        //println(p.get(i).getX() + " " + p.get(i).getY());
+        numpeople--;
       }
       
       
@@ -140,12 +141,14 @@
   }
   void mouseReleased(){
     if(rcButtonPressed){
-      println("x and y cors: (" + round(mouseX) + "," + round(mouseY) + ")");
       Rollercoaster r = new Rollercoaster(round(mouseX), round(mouseY),20);
-      rc.add(r);
+      if (money >= 1000){
+        money -= 1000;
+        rc.add(r);
+      }else{
+        println("you're poor");
+      }
       
-      println("RELEASE WORKED");
-      money -= 1000;
     }
     if(sButtonPressed){
       
