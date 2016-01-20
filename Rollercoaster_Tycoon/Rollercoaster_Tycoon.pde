@@ -12,7 +12,7 @@
 
   
   //buttons
-  boolean rcButtonPressed,sButtonPressed,nameButtonPressed,walkable;
+  boolean rcButtonPressed,sButtonPressed,nameButtonPressed,jButtonPressed,walkable;
   
   //arraylists
   ArrayList<Rollercoaster> rc = new ArrayList<Rollercoaster>(); 
@@ -44,7 +44,7 @@
   // Main draw loop
   void draw() {
     
-    attractionlevel = rc.size()*10;
+    attractionlevel = rc.size()*10 - b.size() * 1;
     if (numpeople < attractionlevel){
       if (millis() - lastTime > r.nextInt(15) * 1000){
         Person p1 = new Person();
@@ -108,7 +108,6 @@
     }
     for(int i = 0; i<b.size();i++){
       fill(222,184,135);
-      println("barf drawn");
       int barfx = b.get(i).getX();
       int barfy = b.get(i).getY();
       triangle(barfx,barfy,barfx + 10,barfy,barfx + 5,barfy + 10);
@@ -116,6 +115,18 @@
     for(int i = 0;i<j.size();i++){
       fill(255,255,255);
       ellipse(j.get(i).getX(),j.get(i).getY(),10.0,10.0);
+      
+
+      if (b.size() > 0){
+        Barf b1 = b.get(r.nextInt(b.size()));
+        if (!b1.getChosen()){
+          j.get(i).chooseBarf(b1);
+          b1.setChosen();       
+          if (j.get(i).moveToBarf()){
+            b.remove(b1);
+          }
+        }
+      }
     }
     for(int i = 0;i<p.size();i++){
       fill(0,0,0);
@@ -145,8 +156,8 @@
       
       
     }
-    
   }
+    
   void mousePressed(){
     if (mouseX>0 && mouseX <250 && mouseY>600 && mouseY <700) {
         println("Release to place rollercoaster");
@@ -158,6 +169,9 @@
     }
     if (mouseX>450 && mouseX<550 && mouseY>560 && mouseY<600){
       nameButtonPressed = true;
+    }
+    if (mouseX>500 && mouseX<750 && mouseY>600 && mouseY<700){
+      jButtonPressed = true;
     }
   }
   void mouseReleased(){
@@ -181,10 +195,20 @@
     if(nameButtonPressed){
       
     }
+    if(jButtonPressed){
+      Janitor j1 = new Janitor(mouseX,mouseY);
+      if (money >= 200){
+        money -= 200;
+        j.add(j1);
+      }else{
+        println("you're poor");
+      }
+    }
     rcButtonPressed = false;
     sButtonPressed = false;
     nameButtonPressed = false;
-    }
+    jButtonPressed = false;
+  }
    
 
 
