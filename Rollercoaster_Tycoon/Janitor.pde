@@ -7,7 +7,13 @@ class Janitor{
     xcor = X;
     ycor = Y;
   }
-  
+  int getX(){
+    return xcor;
+  }
+  int getY(){
+    return ycor;
+  }
   int getCost(){
     return cost;
   }
+}

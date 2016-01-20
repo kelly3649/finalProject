@@ -22,3 +22,4 @@ class Stand{
   int getswidth(){
     return swidth;
   }
+}

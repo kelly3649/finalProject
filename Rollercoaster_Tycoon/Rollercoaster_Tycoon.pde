@@ -19,6 +19,7 @@
   ArrayList<Stand> s = new ArrayList<Stand>();
   ArrayList<Person> p = new ArrayList<Person>();
   ArrayList<Barf> b = new ArrayList<Barf>();
+  ArrayList<Janitor> j = new ArrayList<Janitor>();
   // Setup the Processing Canvas
   void setup() {
     //tests
@@ -92,6 +93,7 @@
     textAlign(CENTER);
     text("Rollercoaster", 125, 650);
     text("Stand",375,650);
+    text("Janitor", 625, 650);
     text("Money: " + money, 875, 750);
     text("Attraction Level: " + attractionlevel, 875, 650);
     fill(255,255,255);
@@ -110,6 +112,10 @@
       int barfx = b.get(i).getX();
       int barfy = b.get(i).getY();
       triangle(barfx,barfy,barfx + 10,barfy,barfx + 5,barfy + 10);
+    }
+    for(int i = 0;i<j.size();i++){
+      fill(255,255,255);
+      ellipse(j.get(i).getX(),j.get(i).getY(),10.0,10.0);
     }
     for(int i = 0;i<p.size();i++){
       fill(0,0,0);
