@@ -33,7 +33,7 @@
     frameRate( 60 );
     
     //setup game mechanics
-    money = 1000;
+    money = 3000;
     //setup random
     r = new Random();
     //setup delay
@@ -47,13 +47,13 @@
     
     attractionlevel = rc.size()*10 - b.size() * 1;
     if (numpeople < attractionlevel){
-      if (millis() - lastTime > r.nextInt(90) * 1000){
+      if (millis() - lastTime > wait){
         Person p1 = new Person();
         p.add(p1);
         numpeople ++;
         
         lastTime = millis();
-        wait = r.nextInt(90) * 1000;
+        wait = r.nextInt(5) * 1000;
 
       }
     }
@@ -147,11 +147,17 @@
          p.get(i).chooseRollercoaster(r1);
          if (p.get(i).moveToRollercoaster()){
            money += r1.getCost();
-           if (p.get(i).getEat()){
-             Barf b1 = new Barf(p.get(i).getX(),p.get(i).getY());
-             b.add(b1);
-             p.get(i).notEat();
-           }
+         }
+      }
+      if (p.get(i).getQueasy()){
+         if (millis() - lastTime > wait){
+           Barf b1 = new Barf(p.get(i).getX(),p.get(i).getY());
+           b.add(b1);
+           p.get(i).notEat();
+           
+           
+           lastTime = millis();
+           wait = r.nextInt(5) * 1000; 
          }
       }
       
