@@ -3,6 +3,7 @@ class Person{
   int canHandle;
   int money;
   boolean ate;
+  boolean queasy;
   int xcor;
   int ycor;
   boolean choseRollercoaster,ridden;
@@ -19,6 +20,7 @@ class Person{
     }else{
       ate = true;
     }
+    queasy = false;
     choseRollercoaster = false;
     ridden = false;
   }
@@ -66,6 +68,9 @@ class Person{
       ride(); //dont put in rollercoaster_tycoon
       println("rode the r");
       choseRollercoaster = false;
+      if (ate){
+        queasy = true;
+      }
       return true;
     }
     return false;
@@ -112,8 +117,12 @@ class Person{
   boolean getEat(){
     return ate;
   }
+  boolean getQueasy(){
+    return queasy;
+  }
   void notEat(){
     ate = false;
+    queasy = false;
   }
   void setX(int a){
     xcor = xcor + a;
