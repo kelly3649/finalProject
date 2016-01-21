@@ -6,8 +6,10 @@ class Person{
   boolean queasy;
   int xcor;
   int ycor;
-  boolean choseRollercoaster,ridden;
+  boolean choseRollercoaster;
   Rollercoaster r1;
+  ArrayList<Rollercoaster> ridden = new ArrayList<Rollercoaster>();
+  
   
   Person(){
     Random r = new Random();
@@ -22,7 +24,6 @@ class Person{
     }
     queasy = false;
     choseRollercoaster = false;
-    ridden = false;
   }
   Person(int canHandle, int money, boolean ate){
     this.canHandle = canHandle;
@@ -32,19 +33,29 @@ class Person{
     xcor = 500;
     ycor = 550;
   }
-  boolean getRidden(Rollercoaster r){
-    return ridden;
-  }
- void setRidden(Rollercoaster r){
-   ridden = true;
- }
+  
   void chooseRollercoaster(Rollercoaster r){
     if (!choseRollercoaster){
       r1 = r;
-      choseRollercoaster = true;
+      if (!ridden.contains(r1)){
+        choseRollercoaster = true;
+        ridden.add(r1);
+        return true;
+      }else{
+         
+      
+      return true;
+    }
+    return false;
     }
   }
-    
+  
+  void addToRidden(Rollercoaster r){
+    ridden.add(r);
+  }
+  ArrayList<Rollercoaster> getRidden(){
+    return ridden;
+  }
   boolean moveToRollercoaster(){
     //println("moving to rollercoaster");
     int destX = r1.getX();
@@ -66,7 +77,6 @@ class Person{
     
     else{
       ride(); //dont put in rollercoaster_tycoon
-      println("rode the r");
       choseRollercoaster = false;
       if (ate){
         queasy = true;

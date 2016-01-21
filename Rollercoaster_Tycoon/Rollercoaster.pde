@@ -3,7 +3,7 @@ class Rollercoaster{
   int cost;
   int rwidth;
   int xcor,ycor;
-  boolean ridden;
+ 
   
 
   Rollercoaster(int xcor,int ycor,int rwidth){
@@ -12,15 +12,9 @@ class Rollercoaster{
     this.rwidth = rwidth;
     intensity = rwidth/20;
     cost = intensity * 5;
-    ridden = false;
   }
 
-/*boolean getRidden(){
-  return ridden;
-}
-void setRidden(){
-  ridden = true;
-}*/
+  
   int getIntensity(){
     return intensity;
   }
