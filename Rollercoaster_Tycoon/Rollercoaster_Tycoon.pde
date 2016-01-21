@@ -126,13 +126,14 @@
         Barf b1 = b.get(r.nextInt(b.size()));
         if (!b1.getChosen()){
           j.get(i).chooseBarf(b1);
-          b1.setChosen();       
-          if (j.get(i).moveToBarf()){
+          b1.setChosen();   
+        }
+        if (j.get(i).moveToBarf()){
             b.remove(b1);
           }
         }
       }
-    }
+    
     for(int i = 0;i<p.size();i++){
       fill(0,0,0);
       ellipse(p.get(i).getX(),p.get(i).getY(),10.0,10.0);

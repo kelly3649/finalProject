@@ -4,6 +4,7 @@ class Barf{
   Barf(int X, int Y){
     xcor = X;
     ycor = Y;
+    chosen = false;
   }
   int getX(){
     return xcor;

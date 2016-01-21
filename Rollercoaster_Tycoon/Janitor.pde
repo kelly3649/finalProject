@@ -18,7 +18,7 @@ class Janitor{
   }
     
   boolean moveToBarf(){
-    //println("moving to rollercoaster");
+    println("moving to barf");
     int destX = b1.getX();
     int destY = b1.getY();
     
