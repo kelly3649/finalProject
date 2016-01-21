@@ -137,9 +137,14 @@
     for(int i = 0;i<p.size();i++){
       fill(0,0,0);
       ellipse(p.get(i).getX(),p.get(i).getY(),10.0,10.0);
-      
+      if(everyRidden(p.get(i))){println("everyridden");
+        p.get(i).moveToEntrance();
+      }
       Rollercoaster r1 = rc.get(r.nextInt(rc.size()));
       
+      while(p.get(i).getRidden(r1)){ //while rollercoaster picked is already ridden
+        r1 = rc.get(r.nextInt(rc.size())); //keep picking new rollercoaster until you chose one you havent ridden
+      }
       
       if (p.get(i).getMoney() < r1.getCost()){
          p.get(i).moveToEntrance();
@@ -152,6 +157,10 @@
              b.add(b1);
              p.get(i).notEat();
            }
+           //if they rode the rollercoaster setRidden
+           p.get(i).setRidden(r1); 
+           println("Setted ridden to true");
+           
          }
       }
       
@@ -162,6 +171,14 @@
       
       
     }
+  }
+  boolean everyRidden(Person p){
+    for(int i = 0;i<rc.size();i++){
+        if(!p.getRidden(rc.get(i))){
+          return false;
+        }
+    }
+    return true;
   }
     
   void mousePressed(){

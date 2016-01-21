@@ -5,7 +5,7 @@ class Person{
   boolean ate;
   int xcor;
   int ycor;
-  boolean choseRollercoaster;
+  boolean choseRollercoaster,ridden;
   Rollercoaster r1;
   
   Person(){
@@ -20,6 +20,7 @@ class Person{
       ate = true;
     }
     choseRollercoaster = false;
+    ridden = false;
   }
   Person(int canHandle, int money, boolean ate){
     this.canHandle = canHandle;
@@ -29,7 +30,12 @@ class Person{
     xcor = 500;
     ycor = 550;
   }
-  
+  boolean getRidden(Rollercoaster r){
+    return ridden;
+  }
+ void setRidden(Rollercoaster r){
+   ridden = true;
+ }
   void chooseRollercoaster(Rollercoaster r){
     if (!choseRollercoaster){
       r1 = r;
@@ -58,6 +64,7 @@ class Person{
     
     else{
       ride(); //dont put in rollercoaster_tycoon
+      println("rode the r");
       choseRollercoaster = false;
       return true;
     }
