@@ -1,8 +1,8 @@
   // IGNORE THIS TAB FOR NOW
   import java.util.*;
   import java.lang.Math;
-  long lastTime = 0;
-  
+  int lastTime;
+  int wait;
   //mechanics
   int numpeople;
   int attractionlevel;
@@ -38,6 +38,7 @@
     r = new Random();
     //setup delay
     lastTime = millis();
+    wait = r.nextInt(5) * 1000;
 
   }
    
@@ -46,10 +47,14 @@
     
     attractionlevel = rc.size()*10 - b.size() * 1;
     if (numpeople < attractionlevel){
-      if (millis() - lastTime > r.nextInt(15) * 1000){
+      if (millis() - lastTime > r.nextInt(90) * 1000){
         Person p1 = new Person();
         p.add(p1);
         numpeople ++;
+        
+        lastTime = millis();
+        wait = r.nextInt(90) * 1000;
+
       }
     }
     
