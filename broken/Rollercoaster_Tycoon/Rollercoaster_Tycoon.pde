@@ -1,23 +1,23 @@
   // IGNORE THIS TAB FOR NOW
   import java.util.*;
   import java.lang.Math;
-  long lastTime = 0;
-  
+  int lastTime;
+  int wait;
   //mechanics
   int numpeople;
   int attractionlevel;
   int money;
   Random r;
-
-
   
   //buttons
-  boolean rcButtonPressed,sButtonPressed,nameButtonPressed,walkable;
+  boolean rcButtonPressed,sButtonPressed,nameButtonPressed,jButtonPressed,walkable;
   
   //arraylists
   ArrayList<Rollercoaster> rc = new ArrayList<Rollercoaster>(); 
   ArrayList<Stand> s = new ArrayList<Stand>();
   ArrayList<Person> p = new ArrayList<Person>();
+  ArrayList<Barf> b = new ArrayList<Barf>();
+  ArrayList<Janitor> j = new ArrayList<Janitor>();
   // Setup the Processing Canvas
   void setup() {
     //tests
@@ -31,7 +31,7 @@
     frameRate( 60 );
     
     //setup game mechanics
-    money = 1000;
+    money = 10000;
     //setup random
     r = new Random();
     //setup delay
@@ -42,12 +42,16 @@
   // Main draw loop
   void draw() {
     
-    attractionlevel = rc.size()*10;
+    attractionlevel = rc.size()*10 - b.size() * 1;
     if (numpeople < attractionlevel){
-      if (millis() - lastTime > r.nextInt(15) * 1000){
+      if (millis() - lastTime > wait){
         Person p1 = new Person();
         p.add(p1);
         numpeople ++;
+        
+        lastTime = millis();
+        wait = r.nextInt(5) * 1000;
+
       }
     }
     
@@ -70,6 +74,7 @@
     rect(0, 600, 250, 100);
     rect(250, 600, 250, 100);
     rect(500, 600, 250, 100);
+    //attractionlevel box
     rect(750, 600, 250, 100);
     rect(0, 700, 250, 100);
     rect(250, 700, 250, 100);
@@ -90,7 +95,9 @@
     textAlign(CENTER);
     text("Rollercoaster", 125, 650);
     text("Stand",375,650);
+    text("Janitor", 625, 650);
     text("Money: " + money, 875, 750);
+    text("Attraction Level: " + attractionlevel, 875, 650);
     fill(255,255,255);
     rect(450,560,100,40);
     for(int i = 0;i<rc.size();i++){
@@ -101,22 +108,61 @@
       fill(249,192,255);
       rect(s.get(i).getX(),s.get(i).getY(),s.get(i).getswidth(),20);
       }
+      
+    for(int i = 0; i<b.size();i++){
+      fill(222,184,135);
+      int barfx = b.get(i).getX();
+      int barfy = b.get(i).getY();
+      triangle(barfx,barfy,barfx + 10,barfy,barfx + 5,barfy + 10);
+    }
+    for(int i = 0;i<j.size();i++){
+      fill(255,255,255);
+      ellipse(j.get(i).getX(),j.get(i).getY(),10.0,10.0);
+      
+      
+      if (b.size() > 0){
+         Barf b1 = b.get(r.nextInt(b.size()));
+         if (!b1.getChosen()){ 
+          //println("ababababab");
+          if (j.get(i).chooseBarf(b1)){
+            b1.setChosen();   
+          }
+         }
+         if (j.get(i).moveToBarf()){
+             b.remove(j.get(i).getBarf());
+         }
+       }
+    }
     for(int i = 0;i<p.size();i++){
       fill(0,0,0);
       ellipse(p.get(i).getX(),p.get(i).getY(),10.0,10.0);
       
-      if (r.nextInt(2) == 1){
-        Rollercoaster a = rc.get(r.nextInt(rc.size()));
-      }else{
-        Stand a = s.get(r.nextInt(s.size()));
+      
+      if (!p.get(i).choseAttraction()){
+        Attractions a = rc.get(r.nextInt(rc.size()));
+        if (r.nextInt(2) == 1 && s.size() > 0){ 
+            a = s.get(r.nextInt(s.size()));
+        }
       }
+      
       
       if (p.get(i).getMoney() < p.get(i).getAttraction().getCost()){
          p.get(i).moveToEntrance();
       }else{
-         p.get(i).chooseSomething(p.get(i).getAttraction());
-         if (p.get(i).moveToSomething()){
+         if (p.get(i).moveToAttraction()){
            money += p.get(i).getAttraction().getCost();
+         }
+      }
+      
+      if (p.get(i).getQueasy()){
+         if (millis() - lastTime > wait){
+           Barf b1 = new Barf(p.get(i).getX(),p.get(i).getY());
+           b.add(b1);
+           p.get(i).notEat();
+           
+           
+           lastTime = millis();
+           wait = r.nextInt(5) * 1000; 
          }
       }
       
