@@ -5,7 +5,7 @@
   int wait;
   //mechanics
   int numpeople;
-  int attractionlevel;
+  int attractionlevel, level;
   int money;
   Random r;
 
@@ -34,6 +34,7 @@
     
     //setup game mechanics
     money = 3000;
+    level = 0;
     //setup random
     r = new Random();
     //setup delay
@@ -44,7 +45,7 @@
    
   // Main draw loop
   void draw() {
-    
+    level = attractionlevel/50 + 1;
     attractionlevel = rc.size()*10 - b.size() * 1;
     if (numpeople < attractionlevel){
       if (millis() - lastTime > wait){
@@ -101,6 +102,7 @@
     text("Janitor", 625, 650);
     text("Money: " + money, 875, 750);
     text("Attraction Level: " + attractionlevel, 875, 650);
+    text("Level:" + level, 625, 750);
     fill(255,255,255);
     rect(450,560,100,40);
     for(int i = 0;i<rc.size();i++){
@@ -198,8 +200,8 @@
   void mouseReleased(){
     if(rcButtonPressed){
       Rollercoaster r = new Rollercoaster(round(mouseX), round(mouseY),20);
-      if (money >= 1000){
-        money -= 1000;
+      if (money >= 500){
+        money -= 500;
         rc.add(r);
       }else{
         println("you're poor");
@@ -207,11 +209,14 @@
       
     }
     if(sButtonPressed){
-      
       Stand s1 = new Stand(mouseX, mouseY,20);
-      s.add(s1);
-      
+      if(money >= 100){
+        money -= 100;
+        s.add(s1);
+      }else{
+        println("you're really poor");
      // println("RELEASE WORKED");
+      }
     }
     if(nameButtonPressed){
       
