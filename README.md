@@ -45,13 +45,13 @@ DAY BY DAY CHANGELOG
 
                                                        --  1/21  --
   NEW FEATURES
-
+   People will now ride roller coasters only once
   BUG FIXES
-
+   Fixed janitor bug from 1/20
   NEW BUG
-
+   
   GOALS
-
+   Add stands to game
 
                                                        --  1/22  --
   NEW FEATURES
@@ -61,4 +61,30 @@ DAY BY DAY CHANGELOG
   NEW BUG
 
   GOALS
+  
+                                                       --  1/23  --
+  NEW FEATURES
 
+  BUG FIXES
+
+  NEW BUG
+
+  GOALS
+
+                                                       --  1/24  --
+  NEW FEATURES
+
+  BUG FIXES
+
+  NEW BUG
+
+  GOALS
+
+                                                       --  1/25  --
+  NEW FEATURES
+
+  BUG FIXES
+
+  NEW BUG
+
+  GOALS
