@@ -141,24 +141,16 @@
       Rollercoaster r1 = rc.get(r.nextInt(rc.size()));
       
       
-      if (p.get(i).getMoney() < r1.getCost()){
+      if (p.get(i).getMoney() < r1.getCost() || rc.size() == p.get(i).getRiddenSize()){
          p.get(i).moveToEntrance();
       }else{
+        p.get(i).chooseRollercoaster(r1);
+        if (p.get(i).moveToRollercoaster()){
+            money += r1.getCost(); 
+        }
          
-         while (rc.size > p.get(i).getRidden().size() ){ 
-           if (!p.get(i).getRidden().contains(r1)){
-             if(p.get(i).chooseRollercoaster(r1)){
-               if (p.get(i).moveToRollercoaster()){
-                 money += r1.getCost();
-                 p.get(i).addToRidden(r1);
-               }
-             }
-           }else{
-             r1 = rc.get(r.nextInt(rc.size()));
-           }               
-             }
       }
-         
+    
          
          
          

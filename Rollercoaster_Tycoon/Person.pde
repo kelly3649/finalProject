@@ -36,52 +36,46 @@ class Person{
   
   void chooseRollercoaster(Rollercoaster r){
     if (!choseRollercoaster){
-      r1 = r;
-      if (!ridden.contains(r1)){
+      if (!ridden.contains(r)){
+        r1 = r;
         choseRollercoaster = true;
-        ridden.add(r1);
-        return true;
-      }else{
-         
+      }
       
-      return true;
-    }
-    return false;
     }
   }
+
   
-  void addToRidden(Rollercoaster r){
-    ridden.add(r);
-  }
-  ArrayList<Rollercoaster> getRidden(){
-    return ridden;
-  }
+
+
   boolean moveToRollercoaster(){
     //println("moving to rollercoaster");
-    int destX = r1.getX();
-    int destY = r1.getY();
+    if (choseRollercoaster){
+      int destX = r1.getX();
+      int destY = r1.getY();
     
-    if (xcor != destX){
-      if (xcor - destX > 0){
-        xcor --;
-      }else{
-        xcor ++;
+      if (xcor != destX){
+        if (xcor - destX > 0){
+          xcor --;
+        }else{
+          xcor ++;
+        }
+      }else if (ycor != destY){    
+        if (ycor - destY > 0){
+          ycor --;   
+        }else{
+          ycor ++;
+        }
       }
-    }else if (ycor != destY){    
-      if (ycor - destY > 0){
-        ycor --;   
-      }else{
-        ycor ++;
-      }
-    }
     
-    else{
-      ride(); //dont put in rollercoaster_tycoon
-      choseRollercoaster = false;
-      if (ate){
-        queasy = true;
+      else{
+        ride(); //dont put in rollercoaster_tycoon
+        choseRollercoaster = false;
+        ridden.add(r1);
+        if (ate){
+          queasy = true;
+        }
+        return true;
       }
-      return true;
     }
     return false;
   }
@@ -129,6 +123,9 @@ class Person{
   }
   boolean getQueasy(){
     return queasy;
+  }
+  int getRiddenSize(){
+    return ridden.size();
   }
   void notEat(){
     ate = false;
