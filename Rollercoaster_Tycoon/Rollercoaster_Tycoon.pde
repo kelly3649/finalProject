@@ -121,16 +121,18 @@
       fill(255,255,255);
       ellipse(j.get(i).getX(),j.get(i).getY(),10.0,10.0);
       
-
+      
       if (b.size() > 0){
         Barf b1 = b.get(r.nextInt(b.size()));
-        if (!b1.getChosen()){
-          j.get(i).chooseBarf(b1);
-          b1.setChosen();   
+        if (!b1.getChosen()){ 
+         //println("ababababab");
+         if (j.get(i).chooseBarf(b1)){
+           b1.setChosen();   
+         }
         }
         if (j.get(i).moveToBarf()){
-            b.remove(b1);
-          }
+            b.remove(j.get(i).getBarf());
+        }
         }
       }
     
