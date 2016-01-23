@@ -42,11 +42,11 @@
     wait = r.nextInt(5) * 1000;
 
   }
-   
+ 
   // Main draw loop
   void draw() {
     level = attractionlevel/50 + 1;
-    attractionlevel = rc.size()*10 - b.size() * 1;
+    attractionlevel = rc.size()*10 +s.size()*5 - b.size() ;
     if (numpeople < attractionlevel){
       if (millis() - lastTime > wait){
         Person p1 = new Person();

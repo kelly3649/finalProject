@@ -12,16 +12,15 @@ A solution is to buy janitor(s), who clean up the barf and bring your attraction
 
   HOW TO PLAY
 Click and drag a utility or attraction that you want in your park to place it.
-
+Goal is to reach the highest level you can.
 
 DAY BY DAY CHANGELOG
 
                                                        --  1/19 --
   NEW FEATURES
    Started on Janitor class
-
   BUGFIXES
-
+   
   NEW BUGS
 
   GOALS
@@ -35,7 +34,7 @@ DAY BY DAY CHANGELOG
   BUG FIXES
    There is now a proper interval between riding a roller coaster and barfing.
    There is now a proper interval between the spawning of each person.
-
+   
   NEW BUGS
    Once a janitor walks to a barf and cleans it, all the other barfs disappear as well.
 
@@ -47,15 +46,18 @@ DAY BY DAY CHANGELOG
   NEW FEATURES
    People will now ride roller coasters only once
   BUG FIXES
-   Fixed janitor bug from 1/20
+   Fixed janitor bug from 1/20: bug where the Janitor could not choose which barf to go to. Now only after he cleans up the chosen barf does he choose another barf.
   NEW BUG
    
   GOALS
-   Add stands to game
-
-                                                       --  1/22  --
+   Add stands to game (implement Attractions effectively)
+						       --  1/22  --
   NEW FEATURES
+    Level System: As your attractionlevel increases by a gap of 50, your level increases by 1. This will make the player want to buy more expensive attractions (ferris wheels that we will make later).
 
+                                                       --  1/23  --
+  NEW FEATURES
+    Stands now increase attractionlevel by 5. 
   BUG FIXES
 
   NEW BUG
