@@ -1,5 +1,4 @@
-//will be in final project, not demo
-class Stand{
+class Stand extends Attraction{
   int xcor, ycor;
   int cost;
   int swidth;
@@ -13,10 +12,10 @@ class Stand{
   int getCost(){
     return cost;
   }
-  float getX(){
+  int getX(){
     return xcor;
   }
-  float getY(){
+  int getY(){
     return ycor;
   }
   int getswidth(){

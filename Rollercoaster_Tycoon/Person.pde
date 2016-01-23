@@ -1,21 +1,19 @@
 import java.util.*;
 class Person{
-  int canHandle;
   int money;
   boolean ate;
   boolean queasy;
   int xcor;
   int ycor;
-  boolean choseRollercoaster;
-  Rollercoaster r1;
-  ArrayList<Rollercoaster> ridden = new ArrayList<Rollercoaster>();
+  boolean choseAttraction;
+  Attraction a1;
+  ArrayList<Attraction> used = new ArrayList<Attraction>();
   
   
   Person(){
     Random r = new Random();
     xcor = 500;
     ycor = 550;
-    canHandle = r.nextInt(10) + 1;
     money = (r.nextInt(10) + 1) * 5;
     if (r.nextInt(2) == 0){
       ate = false;
@@ -23,22 +21,14 @@ class Person{
       ate = true;
     }
     queasy = false;
-    choseRollercoaster = false;
-  }
-  Person(int canHandle, int money, boolean ate){
-    this.canHandle = canHandle;
-    this.money = money; //
-    this.ate = ate;
-    choseRollercoaster = false;
-    xcor = 500;
-    ycor = 550;
+    choseAttraction = false;
   }
   
-  void chooseRollercoaster(Rollercoaster r){
-    if (!choseRollercoaster){
-      if (!ridden.contains(r)){
-        r1 = r;
-        choseRollercoaster = true;
+  void chooseAttraction(Attraction a){
+    if (!choseAttraction){
+      if (!used.contains(r)){
+        a1 = a;
+        choseAttraction = true;
       }
       
     }
@@ -47,11 +37,11 @@ class Person{
   
 
 
-  boolean moveToRollercoaster(){
+  boolean moveToAttraction(){
     //println("moving to rollercoaster");
-    if (choseRollercoaster){
-      int destX = r1.getX();
-      int destY = r1.getY();
+    if (choseAttraction){
+      int destX = a1.getX();
+      int destY = a1.getY();
     
       if (xcor != destX){
         if (xcor - destX > 0){
@@ -68,27 +58,42 @@ class Person{
       }
     
       else{
-        ride(); //dont put in rollercoaster_tycoon
-        choseRollercoaster = false;
-        ridden.add(r1);
-        if (ate){
-          queasy = true;
+        money -= a1.getCost(); //dont put in rollercoaster_tycoon
+        
+        //check attraction type
+        if (a1 instanceof Rollercoaster){
+          if (ate){
+            queasy = true;
+          }
+        }else if(a1 instanceof Stand){
+          ate = true;
         }
+        
+        //after riding, allow for Rollercoaster_Tycoon to 
+        //  choose new attraction
+        choseAttraction = false;
+        
+        //prevent Person from choosing something it chose 
+        //  before
+        used.add(a1);
+        
+        //return true so that the player can get money
+        // in Rollercoaster_tycoon
         return true;
       }
     }
     return false;
   }
   
-  void ride(){
-    money -= r1.getCost();
-  }
+
   
-  void moveToEntrance(){
+  boolean moveToEntrance(){
    // println("moving to entrance");
-    choseRollercoaster = true;
-    Rollercoaster entrance = new Rollercoaster(500,590,0);
-    r1 = entrance;
+   
+   //stop person from choosing new attraction
+    choseAttraction = true;
+    
+    
       //500,590 is the entrance coordinates
       if (xcor != 500){
         if (xcor - 500 > 0){
@@ -102,7 +107,11 @@ class Person{
         }else{
           ycor ++;
         }
+      }else{
+        return true;
       }
+      return false;
+      
       
     
   }
@@ -124,8 +133,8 @@ class Person{
   boolean getQueasy(){
     return queasy;
   }
-  int getRiddenSize(){
-    return ridden.size();
+  int getUsedSize(){
+    return used.size();
   }
   void notEat(){
     ate = false;

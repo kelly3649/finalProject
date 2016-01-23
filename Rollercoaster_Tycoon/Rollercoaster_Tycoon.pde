@@ -15,6 +15,7 @@
   boolean rcButtonPressed,sButtonPressed,nameButtonPressed,jButtonPressed,walkable;
   
   //arraylists
+  ArrayList<Attraction> att = new ArrayList<Attraction>();
   ArrayList<Rollercoaster> rc = new ArrayList<Rollercoaster>(); 
   ArrayList<Stand> s = new ArrayList<Stand>();
   ArrayList<Person> p = new ArrayList<Person>();
@@ -46,7 +47,7 @@
   // Main draw loop
   void draw() {
     level = attractionlevel/50 + 1;
-    attractionlevel = rc.size()*10 +s.size()*5 - b.size() ;
+    attractionlevel = att.size()*10 - b.size() ;
     if (numpeople < attractionlevel){
       if (millis() - lastTime > wait){
         Person p1 = new Person();
@@ -65,6 +66,8 @@
     // Fill canvas picture
     background(1, 142, 14);
     strokeWeight(2);
+    
+    //grid
     /*
     for (int i = 0; i<1000; i+=20) {
       line(i, 0, i, 600);
@@ -72,17 +75,25 @@
     for (int i = 0; i<600; i+=20) {
       line(0, i, 1000, i);
     }
-  */
+    */
+    
+    
     // Set fill-color to blue
     fill( 0, 121, 184 );
+    
+    //rollercoaster box
     rect(0, 600, 250, 100);
+    //stand box
     rect(250, 600, 250, 100);
+    //future attraction boxes
     rect(500, 600, 250, 100);
-    //attractionlevel box
-    rect(750, 600, 250, 100);
     rect(0, 700, 250, 100);
     rect(250, 700, 250, 100);
     rect(500, 700, 250, 100);
+    
+    //attractionlevel box
+    rect(750, 600, 250, 100);
+ 
     //moneybox
     rect(750, 700, 250, 100);
     
@@ -142,18 +153,20 @@
       fill(0,0,0);
       ellipse(p.get(i).getX(),p.get(i).getY(),10.0,10.0);
       
-      Rollercoaster r1 = rc.get(r.nextInt(rc.size()));
+      
+      Rollercoaster a1 = rc.get(r.nextInt(rc.size()));
       
       
-      if (p.get(i).getMoney() < r1.getCost() || rc.size() == p.get(i).getRiddenSize()){
+      if (p.get(i).getMoney() < a1.getCost() || rc.size() == p.get(i).getUsedSize()){
          p.get(i).moveToEntrance();
       }else{
-        p.get(i).chooseRollercoaster(r1);
-        if (p.get(i).moveToRollercoaster()){
-            money += r1.getCost(); 
+        p.get(i).chooseAttraction(a1);
+        if (p.get(i).moveToAttraction()){
+            money += a1.getCost(); 
         }
-         
       }
+         
+      
     
          
          
@@ -199,10 +212,11 @@
   }
   void mouseReleased(){
     if(rcButtonPressed){
-      Rollercoaster r = new Rollercoaster(round(mouseX), round(mouseY),20);
+      Rollercoaster r1 = new Rollercoaster(round(mouseX), round(mouseY),20);
       if (money >= 500){
         money -= 500;
-        rc.add(r);
+        rc.add(r1);
+        att.add(r1);
       }else{
         println("you're poor");
       }
@@ -213,8 +227,9 @@
       if(money >= 100){
         money -= 100;
         s.add(s1);
+        att.add(s1);
       }else{
-        println("you're really poor");
+        println("you're very poor");
      // println("RELEASE WORKED");
       }
     }
@@ -227,7 +242,7 @@
         money -= 200;
         j.add(j1);
       }else{
-        println("you're poor");
+        println("you're really poor");
       }
     }
     rcButtonPressed = false;

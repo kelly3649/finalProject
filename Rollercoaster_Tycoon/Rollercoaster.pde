@@ -1,4 +1,4 @@
-class Rollercoaster{
+class Rollercoaster extends Attraction{
   int intensity;
   int cost;
   int rwidth;
