@@ -1,15 +1,13 @@
 class ferrisWheel extends Attraction{
-  int intensity;
-  int cost;
-  int fwwidth;
   int xcor,ycor;
+  int cost;
  
   
-  ferrisWheel(int xcor,int ycor,int fwwidth){
+  ferrisWheel(int xcor,int ycor){
     this.xcor = xcor;
     this.ycor = ycor;
-    this.fwwidth = fwwidth;
-    cost = fwwidth/20 * 5;
+    cost = 10;
+    
   }
 
   
@@ -21,9 +19,6 @@ class ferrisWheel extends Attraction{
   }
   int getY(){
     return ycor;
-  }
-  int getfwwidth(){
-    return fwwidth;
   }
   
 }

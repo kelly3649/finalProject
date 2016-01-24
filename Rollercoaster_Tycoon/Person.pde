@@ -1,10 +1,10 @@
 import java.util.*;
 class Person{
   int money;
+  int xcor, ycor;
   boolean ate;
-  boolean queasy, newToPark;
-  int xcor;
-  int ycor;
+  boolean queasy;
+  boolean newToPark;
   boolean choseAttraction;
   Attraction a1;
   ArrayList<Attraction> used = new ArrayList<Attraction>();

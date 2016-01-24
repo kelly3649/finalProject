@@ -1,15 +1,12 @@
 class Rollercoaster extends Attraction{
-  int intensity;
-  int cost;
-  int rwidth;
   int xcor,ycor;
+  int cost;
  
 
-  Rollercoaster(int xcor,int ycor,int rwidth){
+  Rollercoaster(int xcor,int ycor){
     this.xcor = xcor;
     this.ycor = ycor;
-    this.rwidth = rwidth;
-    cost = rwidth/20 * 5;
+    cost = 10;
   }
 
   
@@ -21,9 +18,6 @@ class Rollercoaster extends Attraction{
   }
   int getY(){
     return ycor;
-  }
-  int getrwidth(){
-    return rwidth;
   }
   
 }
