@@ -1,23 +1,9 @@
 class Rollercoaster extends Attraction{
-  int xcor,ycor;
-  int cost;
- 
-
-  Rollercoaster(int xcor,int ycor){
-    this.xcor = xcor;
-    this.ycor = ycor;
+  Rollercoaster(int xcor,int ycor, PShape shape){
+    super(xcor, ycor, shape);
     cost = 10;
   }
 
   
-  int getCost(){
-    return cost;
-  }
-  int getX(){
-    return xcor;
-  }
-  int getY(){
-    return ycor;
-  }
   
 }

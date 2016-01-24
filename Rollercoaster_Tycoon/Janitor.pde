@@ -13,7 +13,6 @@ class Janitor{
   boolean chooseBarf(Barf b){
     if (!choseBarf){
       b1 = b;
-      println("chose barf");
       choseBarf = true;
       return true;
     }
@@ -22,7 +21,6 @@ class Janitor{
     
   boolean moveToBarf(){
     if(choseBarf){
-      println("moving to barf");
       int destX = b1.getX();
       int destY = b1.getY();
     
@@ -42,7 +40,6 @@ class Janitor{
     
      else{
        choseBarf = false;
-       println("good");
        return true;
       }
     }
