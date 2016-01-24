@@ -15,11 +15,7 @@ class Person{
     xcor = 500;
     ycor = 550;
     money = (r.nextInt(10) + 1) * 5;
-    if (r.nextInt(2) == 0){
-      ate = false;
-    }else{
-      ate = true;
-    }
+    ate = false;
     queasy = false;
     choseAttraction = false;
     newToPark = true;
