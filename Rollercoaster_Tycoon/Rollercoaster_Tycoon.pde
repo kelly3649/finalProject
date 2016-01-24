@@ -1,8 +1,12 @@
   // IGNORE THIS TAB FOR NOW
   import java.util.*;
   import java.lang.Math;
+  //time stuff
   int lastTime;
   int wait;
+  //shapes
+  PShape fWheel, coaster, stand;
+  
   //mechanics
   int numpeople;
   int attractionlevel, level;
@@ -33,6 +37,11 @@
     size(1000, 800);
     strokeWeight( 5 );
     frameRate( 60 );
+    
+    //setup shapes
+    fWheel = loadShape("ferrisWheel.svg");
+    coaster = loadShape("coaster.svg");
+    stand = loadShape("stand.svg");
     
     //setup game mechanics
     money = 3000;
@@ -120,17 +129,16 @@
     text("Level:" + level, 625, 750);
     fill(255,255,255);
     rect(450,560,100,40);
+    shapeMode(CENTER);
     for(int i = 0;i<rc.size();i++){
-        fill(255,0,0);
-        rect(rc.get(i).getX(),rc.get(i).getY(),rc.get(i).getrwidth(),20);
+      shape(coaster,rc.get(i).getX(),rc.get(i).getY(),200, 60);
     }
     for(int i = 0;i<s.size();i++){
-      fill(249,192,255);
-      rect(s.get(i).getX(),s.get(i).getY(),s.get(i).getswidth(),20);
+      
+      shape(stand,s.get(i).getX(),s.get(i).getY(),s.get(i).getswidth(),20);
     }
     for(int i = 0;i<fw.size();i++){
-      fill(0,0,0);
-      rect(fw.get(i).getX(),fw.get(i).getY(),fw.get(i).getfwwidth(),20);
+      shape(fWheel,fw.get(i).getX(),fw.get(i).getY(),100,100);
     }
     for(int i = 0; i<b.size();i++){
       fill(222,184,135);
@@ -138,9 +146,12 @@
       int barfy = b.get(i).getY();
       triangle(barfx,barfy,barfx + 10,barfy,barfx + 5,barfy + 10);
     }
+    stroke(0,0,0);
     for(int i = 0;i<j.size();i++){
+      
       fill(255,255,255);
       ellipse(j.get(i).getX(),j.get(i).getY(),10.0,10.0);
+      
       
       
       if (b.size() > 0){
@@ -156,7 +167,7 @@
         }
         }
       }
-    
+    stroke(255,255,255);
     for(int i = 0;i<p.size();i++){
       fill(0,0,0);
       ellipse(p.get(i).getX(),p.get(i).getY(),10.0,10.0);

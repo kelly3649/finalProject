@@ -45,33 +45,31 @@ DAY BY DAY CHANGELOG
                                                        --  1/21  --
   NEW FEATURES
    People will now ride roller coasters only once
+   
   BUG FIXES
    Fixed janitor bug from 1/20: bug where the Janitor could not choose which barf to go to. Now only after he cleans up the chosen barf does he choose another barf.
-  NEW BUG
    
   GOALS
    Add stands to game (implement Attractions effectively)
+   
 						       --  1/22  --
   NEW FEATURES
     Level System: As your attractionlevel increases by a gap of 50, your level increases by 1. This will make the player want to buy more expensive attractions (ferris wheels that we will make later).
 
                                                        --  1/23  --
   NEW FEATURES
-    Stands now increase attractionlevel by 5. 
+    Stands now increase attractionlevel
+    Code edited to accomodate shapes
+    Ferris Wheels added
+    
   BUG FIXES
-
+    Cleaned up code, now it is much easier to add new Attractions
+    
   NEW BUG
 
   GOALS
+    Find better shapes
   
-                                                       --  1/23  --
-  NEW FEATURES
-
-  BUG FIXES
-
-  NEW BUG
-
-  GOALS
 
                                                        --  1/24  --
   NEW FEATURES
