@@ -59,7 +59,7 @@ class Person{
         money -= a1.getCost(); //dont put in rollercoaster_tycoon
         
         //check attraction type
-        if (a1 instanceof Rollercoaster){
+        if (a1 instanceof Rollercoaster || a1 instanceof ferrisWheel){
           if (ate){
             queasy = true;
           }

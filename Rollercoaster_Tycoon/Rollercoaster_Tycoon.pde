@@ -12,12 +12,13 @@
 
   
   //buttons
-  boolean rcButtonPressed,sButtonPressed,nameButtonPressed,jButtonPressed,walkable;
+  boolean rcButtonPressed,sButtonPressed,nameButtonPressed,jButtonPressed,fwButtonPressed;
   
   //arraylists
   ArrayList<Attraction> att = new ArrayList<Attraction>();
   ArrayList<Rollercoaster> rc = new ArrayList<Rollercoaster>(); 
   ArrayList<Stand> s = new ArrayList<Stand>();
+  ArrayList<ferrisWheel> fw = new ArrayList<ferrisWheel>();
   ArrayList<Person> p = new ArrayList<Person>();
   ArrayList<Barf> b = new ArrayList<Barf>();
   ArrayList<Janitor> j = new ArrayList<Janitor>();
@@ -88,7 +89,9 @@
     //future attraction boxes
     rect(500, 600, 250, 100);
     rect(0, 700, 250, 100);
+    //ferris wheel box
     rect(250, 700, 250, 100);
+    //level box
     rect(500, 700, 250, 100);
     
     //attractionlevel box
@@ -110,6 +113,7 @@
     textAlign(CENTER);
     text("Rollercoaster", 125, 650);
     text("Stand",375,650);
+    text("Ferris Wheel",375,750);
     text("Janitor", 625, 650);
     text("Money: " + money, 875, 750);
     text("Attraction Level: " + attractionlevel, 875, 650);
@@ -123,6 +127,10 @@
     for(int i = 0;i<s.size();i++){
       fill(249,192,255);
       rect(s.get(i).getX(),s.get(i).getY(),s.get(i).getswidth(),20);
+    }
+    for(int i = 0;i<fw.size();i++){
+      fill(0,0,0);
+      rect(fw.get(i).getX(),fw.get(i).getY(),fw.get(i).getfwwidth(),20);
     }
     for(int i = 0; i<b.size();i++){
       fill(222,184,135);
@@ -207,10 +215,14 @@
         sButtonPressed = true;
     }
     if (mouseX>450 && mouseX<550 && mouseY>560 && mouseY<600){
+      println("Release to place Ferris Wheel");
       nameButtonPressed = true;
     }
     if (mouseX>500 && mouseX<750 && mouseY>600 && mouseY<700){
       jButtonPressed = true;
+    }
+    if (mouseX>250 && mouseX<500 && mouseY>700 && mouseY<800){
+      fwButtonPressed = true;
     }
   }
   void mouseReleased(){
@@ -222,9 +234,8 @@
         att.add(r1);
       }else{
         println("you're poor");
-      }
-      
-    }
+      }     
+    } 
     if(sButtonPressed){
       Stand s1 = new Stand(mouseX, mouseY,20);
       if(money >= 100){
@@ -236,8 +247,18 @@
      // println("RELEASE WORKED");
       }
     }
-    if(nameButtonPressed){
+    if(fwButtonPressed){
+      ferrisWheel f1 = new ferrisWheel(mouseX,mouseY,20);
+      if(money >= 500){
+        money -= 500;
+        fw.add(f1);
+        att.add(f1);
+      }else{
+        println("you're poor");
+      }
       
+    }
+    if(nameButtonPressed){
     }
     if(jButtonPressed){
       Janitor j1 = new Janitor(mouseX,mouseY);
@@ -250,6 +271,7 @@
     }
     rcButtonPressed = false;
     sButtonPressed = false;
+    fwButtonPressed = false;
     nameButtonPressed = false;
     jButtonPressed = false;
   }
