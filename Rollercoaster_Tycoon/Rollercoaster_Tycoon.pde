@@ -154,15 +154,18 @@
       ellipse(p.get(i).getX(),p.get(i).getY(),10.0,10.0);
       
       
-      Rollercoaster a1 = rc.get(r.nextInt(rc.size()));
-      
-      
-      if (p.get(i).getMoney() < a1.getCost() || rc.size() == p.get(i).getUsedSize()){
+      Attraction a1 = att.get(r.nextInt(att.size()));
+
+      // if person has no money to ride or rode everything
+      if (p.get(i).getNewToPark()){
+        p.get(i).chooseAttraction(a1);
+      }else if (p.get(i).getMoney() < p.get(i).getAttraction().getCost() || att.size() == p.get(i).getUsedSize()){
          p.get(i).moveToEntrance();
       }else{
+        //then choose attraction and move to it
         p.get(i).chooseAttraction(a1);
         if (p.get(i).moveToAttraction()){
-            money += a1.getCost(); 
+            money += p.get(i).getAttraction().getCost(); 
         }
       }
          

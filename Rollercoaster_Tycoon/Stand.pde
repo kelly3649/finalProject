@@ -7,7 +7,7 @@ class Stand extends Attraction{
     this.xcor = xcor;
     this.ycor = ycor;
     this.swidth = swidth;
-    cost = swidth * 5;
+    cost = 1;
   }
   int getCost(){
     return cost;

@@ -2,7 +2,7 @@ import java.util.*;
 class Person{
   int money;
   boolean ate;
-  boolean queasy;
+  boolean queasy, newToPark;
   int xcor;
   int ycor;
   boolean choseAttraction;
@@ -22,6 +22,7 @@ class Person{
     }
     queasy = false;
     choseAttraction = false;
+    newToPark = true;
   }
   
   void chooseAttraction(Attraction a){
@@ -29,6 +30,7 @@ class Person{
       if (!used.contains(r)){
         a1 = a;
         choseAttraction = true;
+        newToPark = false;
       }
       
     }
@@ -133,8 +135,14 @@ class Person{
   boolean getQueasy(){
     return queasy;
   }
+  boolean getNewToPark(){
+    return newToPark;
+  }
   int getUsedSize(){
     return used.size();
+  }
+  Attraction getAttraction(){
+    return a1;
   }
   void notEat(){
     ate = false;
