@@ -74,11 +74,17 @@ DAY BY DAY CHANGELOG
                                                        --  1/24  --
   NEW FEATURES
     Added Merry Go Rounds
+    Now every 200 attraction points, level increases by 1
+    Made attraction cost for player increase with level
+    Made attractions cost more to ride per level
+    Increase attraction size as level increases
+    Increase the amount of money people spawn with as level increases
+    Added Cheat button (excluvisely for Mr. K!)
     
   BUG FIXES
     Cleaned up code, easier to add new Attractions
-    
+   
   NEW BUG
-
   GOALS
+    WERE DONE!!!
 

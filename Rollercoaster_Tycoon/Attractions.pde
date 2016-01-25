@@ -9,7 +9,6 @@ class Attraction{
     this.shape = shape;
     this.level = level;
   }
-
   int getLevel(){
     return level;
   }

@@ -10,11 +10,11 @@ class Person{
   ArrayList<Attraction> used = new ArrayList<Attraction>();
   
   
-  Person(){
+  Person(int level){
     Random r = new Random();
     xcor = 500;
     ycor = 550;
-    money = (r.nextInt(10) + 1) * 5;
+    money = (r.nextInt(10) + 1) * 5 * level;
     ate = false;
     queasy = false;
     choseAttraction = false;

@@ -11,11 +11,12 @@
   int attractionlevel, level;
   int money;
   Random r;
-
+int increment;
   
   //buttons
   boolean mButtonPressed,jButtonPressed,fwButtonPressed;
   boolean rcButtonPressed,sButtonPressed;
+  boolean cheatPressed;
   
   
   //arraylists
@@ -38,8 +39,7 @@
   
   void setup() {
     //tests
-    //Rollercoaster r1 = new Rollercoaster(450,450,20);
-    //rc.add(r1);
+    
     //Person p1 = new Person();
     
     //setup game
@@ -60,19 +60,17 @@
     for (int i = 1; i <= 2; i++){
       merryIcons.add(loadShape("icons/merry"+i+".svg"));
     }
-    //fWheel = loadShape("icons/wheel1.svg");
-    //coaster = loadShape("icons/coaster1.svg");
-    //stand = loadShape("icons/stand1.svg");
+    
     
     //setup game mechanics
-    money = 5000;
+    money = 10000000;
     level = 0;
+    increment = 0;
     //setup random
     r = new Random();
     //setup delay
     lastTime = millis();
     wait = r.nextInt(5) * 1000;
-
   }
  
 
@@ -80,13 +78,12 @@
   // Main draw loop
   void draw() {
     level = attractionlevel/200 + 1;
-    attractionlevel = rc.size()*12 + s.size()*5 + m.size()*6 + fw.size()*20 - b.size();
+    attractionlevel = rc.size()*12 + s.size()*5 + m.size()*6 + fw.size()*20 - b.size() + increment;
     if (numpeople < attractionlevel){
       if (millis() - lastTime > wait){
-        Person p1 = new Person();
+        Person p1 = new Person(level);
         p.add(p1);
         numpeople ++;
-        
         lastTime = millis();
         wait = r.nextInt(5) * 1000;
 
@@ -133,6 +130,9 @@
     //moneybox
     rect(750, 700, 250, 100);
     
+    //cheat button 
+    rect(0,0,50,50);
+    
    
     // Set stroke-color white
     stroke(255); 
@@ -149,7 +149,7 @@
     text("Ferris Wheel",375,750);
     text("Merry Go Round", 125, 750);
     text("Janitor", 625, 650);
-    
+    text("Cheat", 25,25);
     text("Money: " + money, 875, 750);
     text("Attraction Level: " + attractionlevel, 875, 650);
     text("Level:" + level, 625, 750);
@@ -261,18 +261,18 @@
     if (mouseX>250 && mouseX<500 && mouseY>700 && mouseY<800){
       fwButtonPressed = true;
     }
-    if (mouseX>0 && mouseX <250 && mouseY>700 && mouseY <800) {
-      println("Release to place Merry Go Round");
-      mButtonPressed = true;
+    if (mouseX>0 && mouseX<50 && mouseY>0 && mouseY<50){
+      cheatPressed = true;
     }
+
   }
   void mouseReleased(){
     if (mouseY<550){
       if(rcButtonPressed){
         
         Rollercoaster r1 = new Rollercoaster(mouseX, mouseY, coasterIcons.get(r.nextInt(coasterIcons.size())),level);
-        if (money >= 500){
-          money -= 500;
+        if (money >= 500 * r1.getLevel()){
+          money -= 500 * r1.getLevel();
           rc.add(r1);
           att.add(r1);
         }else{
@@ -282,8 +282,8 @@
       if(sButtonPressed){
         
         Stand s1 = new Stand(mouseX, mouseY,standIcons.get(r.nextInt(standIcons.size())),level);
-        if(money >= 100){
-          money -= 100;
+        if(money >= 100 * s1.getLevel()){
+          money -= 100 * s1.getLevel();
           s.add(s1);
           att.add(s1);
         }else{
@@ -293,8 +293,8 @@
       }
       if(fwButtonPressed){
         ferrisWheel f1 = new ferrisWheel(mouseX,mouseY,wheelIcons.get(r.nextInt(wheelIcons.size())),level);
-        if(money >= 1000){
-          money -= 1000;
+        if(money >= 1000 * f1.getLevel()){
+          money -= 1000 * f1.getLevel();
           fw.add(f1);
           att.add(f1);
         }else{
@@ -304,8 +304,8 @@
       }
       if(mButtonPressed){
         MerryGoRound m1 = new MerryGoRound(mouseX,mouseY,merryIcons.get(r.nextInt(merryIcons.size())),level);
-        if(money >= 300){
-          money -= 300;
+        if(money >= 300 * m1.getLevel()){
+          money -= 300 * m1.getLevel();
           m.add(m1);
           att.add(m1);
           
@@ -323,12 +323,20 @@
           println("you're really poor");
         }
       }
+      if(cheatPressed){
+        ferrisWheel f1 = new ferrisWheel(500,300,wheelIcons.get(r.nextInt(wheelIcons.size())),level);
+        fw.add(f1);
+        att.add(f1);
+        money += 10000000;
+        increment += 1000;
+      }
     }
     rcButtonPressed = false;
     sButtonPressed = false;
     fwButtonPressed = false;
     jButtonPressed = false;
     mButtonPressed = false;
+    cheatPressed = false;
   }
    
 
