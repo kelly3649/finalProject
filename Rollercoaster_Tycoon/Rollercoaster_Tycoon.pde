@@ -65,7 +65,7 @@
     //stand = loadShape("icons/stand1.svg");
     
     //setup game mechanics
-    money = 100000;
+    money = 5000;
     level = 0;
     //setup random
     r = new Random();
@@ -158,17 +158,17 @@
     rect(450,560,100,40);
     shapeMode(CENTER);
     for(int i = 0;i<rc.size();i++){
-      shape(rc.get(i).getShape(),rc.get(i).getX(),rc.get(i).getY(),50, 50);
+      shape(rc.get(i).getShape(),rc.get(i).getX(),rc.get(i).getY(),rc.get(i).getLevel()*25, rc.get(i).getLevel()*25);
     }
     for(int i = 0;i<s.size();i++){
       
-      shape(s.get(i).getShape(),s.get(i).getX(),s.get(i).getY(),50,50);
+      shape(s.get(i).getShape(),s.get(i).getX(),s.get(i).getY(),s.get(i).getLevel()*25,s.get(i).getLevel()*25);
     }
     for(int i = 0;i<fw.size();i++){
-      shape(fw.get(i).getShape(),fw.get(i).getX(),fw.get(i).getY(),50,50);
+      shape(fw.get(i).getShape(),fw.get(i).getX(),fw.get(i).getY(),fw.get(i).getLevel()*25,fw.get(i).getLevel()*25);
     }
     for(int i = 0;i<m.size();i++){
-      shape(m.get(i).getShape(),m.get(i).getX(),m.get(i).getY(),50,50);
+      shape(m.get(i).getShape(),m.get(i).getX(),m.get(i).getY(),m.get(i).getLevel()*25,m.get(i).getLevel()*25);
     }
     for(int i = 0; i<b.size();i++){
       fill(222,184,135);
@@ -270,7 +270,7 @@
     if (mouseY<550){
       if(rcButtonPressed){
         
-        Rollercoaster r1 = new Rollercoaster(mouseX, mouseY, coasterIcons.get(r.nextInt(coasterIcons.size())));
+        Rollercoaster r1 = new Rollercoaster(mouseX, mouseY, coasterIcons.get(r.nextInt(coasterIcons.size())),level);
         if (money >= 500){
           money -= 500;
           rc.add(r1);
@@ -281,7 +281,7 @@
       } 
       if(sButtonPressed){
         
-        Stand s1 = new Stand(mouseX, mouseY,standIcons.get(r.nextInt(standIcons.size())));
+        Stand s1 = new Stand(mouseX, mouseY,standIcons.get(r.nextInt(standIcons.size())),level);
         if(money >= 100){
           money -= 100;
           s.add(s1);
@@ -292,7 +292,7 @@
         }
       }
       if(fwButtonPressed){
-        ferrisWheel f1 = new ferrisWheel(mouseX,mouseY,wheelIcons.get(r.nextInt(wheelIcons.size())));
+        ferrisWheel f1 = new ferrisWheel(mouseX,mouseY,wheelIcons.get(r.nextInt(wheelIcons.size())),level);
         if(money >= 1000){
           money -= 1000;
           fw.add(f1);
@@ -303,7 +303,7 @@
         
       }
       if(mButtonPressed){
-        MerryGoRound m1 = new MerryGoRound(mouseX,mouseY,merryIcons.get(r.nextInt(merryIcons.size())));
+        MerryGoRound m1 = new MerryGoRound(mouseX,mouseY,merryIcons.get(r.nextInt(merryIcons.size())),level);
         if(money >= 300){
           money -= 300;
           m.add(m1);
