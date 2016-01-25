@@ -5,14 +5,26 @@ Goal is to earn as much money and have as many attractions in your amusement par
 As your number of attractions increase, so does your attraction level
 Attraction level determines the number of people who visit your park.
 
-
 If a person eats before they ride a rollercoaster, they will barf
 Barf decreases attraction level of your amusement park.
-A solution is to buy janitor(s), who clean up the barf and bring your attraction level back to normal. 
+A solution is to buy janitor(s), who clean up the barf and bring your attraction level back to normal.
+
 
   HOW TO PLAY
 Click and drag a utility or attraction that you want in your park to place it.
-Goal is to reach the highest level you can.
+
+Attraction level increases with more attractions
+Level increases per 200 attraction level.
+As level increases, size of attraction increases.
+
+Use the cheat button if you're a noob (increases money and attraction level)
+
+Goal: Get to the highest level (and subsequently, get the biggest attractions!)
+
+
+
+
+
 
 DAY BY DAY CHANGELOG
 
