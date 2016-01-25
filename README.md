@@ -73,18 +73,12 @@ DAY BY DAY CHANGELOG
 
                                                        --  1/24  --
   NEW FEATURES
-
+    Added Merry Go Rounds
+    
   BUG FIXES
-
+    Cleaned up code, easier to add new Attractions
+    
   NEW BUG
 
   GOALS
 
-                                                       --  1/25  --
-  NEW FEATURES
-
-  BUG FIXES
-
-  NEW BUG
-
-  GOALS
