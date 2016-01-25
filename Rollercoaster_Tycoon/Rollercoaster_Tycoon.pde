@@ -5,15 +5,12 @@
   //timing 
   int lastTime;
   int wait;
-
-  PShape fWheel, coaster, stand;
   
   //mechanics
   int numpeople;
   int attractionlevel, level;
   int money;
   Random r;
-
 
   
   //buttons
@@ -68,7 +65,7 @@
     //stand = loadShape("icons/stand1.svg");
     
     //setup game mechanics
-    money = 3000;
+    money = 100000;
     level = 0;
     //setup random
     r = new Random();
@@ -78,10 +75,12 @@
 
   }
  
+
+
   // Main draw loop
   void draw() {
-    level = attractionlevel/50 + 1;
-    attractionlevel = att.size()*10 - b.size() ;
+    level = attractionlevel/200 + 1;
+    attractionlevel = rc.size()*12 + s.size()*5 + m.size()*6 + fw.size()*20 - b.size();
     if (numpeople < attractionlevel){
       if (millis() - lastTime > wait){
         Person p1 = new Person();
@@ -294,8 +293,8 @@
       }
       if(fwButtonPressed){
         ferrisWheel f1 = new ferrisWheel(mouseX,mouseY,wheelIcons.get(r.nextInt(wheelIcons.size())));
-        if(money >= 500){
-          money -= 500;
+        if(money >= 1000){
+          money -= 1000;
           fw.add(f1);
           att.add(f1);
         }else{
@@ -305,8 +304,8 @@
       }
       if(mButtonPressed){
         MerryGoRound m1 = new MerryGoRound(mouseX,mouseY,merryIcons.get(r.nextInt(merryIcons.size())));
-        if(money >= 500){
-          money -= 500;
+        if(money >= 300){
+          money -= 300;
           m.add(m1);
           att.add(m1);
           
