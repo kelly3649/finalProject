@@ -63,7 +63,7 @@ int increment;
     
     
     //setup game mechanics
-    money = 10000000;
+    money = 1000;
     level = 0;
     increment = 0;
     //setup random
@@ -254,6 +254,10 @@ int increment;
     if (mouseX>250 && mouseX <500 && mouseY>600 && mouseY <700) {
       println("Release to place Stand");
       sButtonPressed = true;
+    }
+    if (mouseX>0 && mouseX <250 && mouseY>700 && mouseY <800) {
+      println("Release to place Merry Go Round");
+      mButtonPressed = true;
     }
     if (mouseX>500 && mouseX<750 && mouseY>600 && mouseY<700){
       jButtonPressed = true;
